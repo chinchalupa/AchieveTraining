@@ -1,0 +1,31 @@
+<template name="userpage">
+    <div class="userpage">
+
+        <h1>Account page for {{currentUser.username}} ({{convertLevel currentUser.profile.level}})</h1>
+        <div class="badges">
+            <h2>Badges</h2>
+            {{#if canViewLevel 0}}
+                <div class="badge-icon">
+                    <img src="/Mentor.png" alt="Mentor Image" />
+                </div>
+            {{/if}}
+
+            {{#if canViewLevel 1}}
+                <div class="badge-icon">
+                    <img src="/Facilitator.png" alt="Facilitator Image" />
+                </div>
+            {{/if}}
+
+            {{#if canViewLevel 2}}
+                <div class="badge-icon">
+                    <img src="/Coach.png" alt="Coach Image" />
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="account-settings">
+            <h2>Account Settings</h2>
+            <a class="change-password">Change Password</a>
+        </div>
+    </div>
+</template>

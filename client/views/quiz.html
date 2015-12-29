@@ -1,0 +1,29 @@
+<template name="quiz">
+    <div class="quiz">
+        <div class="container">
+            <h1>{{getName}}</h1>
+            {{#each getQuestions}}
+                <div class="question">
+                    <h3>{{question}}</h3>
+                    <div class="editButtons">
+                        <button class="edit btn btn-warning" data-toggle="modal" data-target="#questionModal"><i class="fa fa-pencil-square-o"></i></button>
+                        <button class="remove btn btn-danger"><i class="fa fa-times"></i></button>
+                    </div>
+                    {{#each getQuestionAnswers}}
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{{../_id}}" value="{{this}}" disabled>{{this}}
+                            </label>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+
+            <button id="createQuestion" class="btn btn-default" data-toggle="modal" data-target="#questionModal">Create Question</button>
+
+            {{> questionModal}}
+
+
+        </div>
+    </div>
+</template>

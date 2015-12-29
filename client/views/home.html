@@ -1,0 +1,34 @@
+<template name="home">
+    <div class="home">
+        <div class="row jumbotron">
+            <div class="container">
+                <h1>Welcome back, {{currentUser.username}}!</h1>
+                <p>To get started select a video from the list below. Once you have completed the video, a
+                quiz will become available for you to fill out. Scoring higher that 85% will allow you to move
+                onto other videos. Once you have completed all the videos, please contact (317) 989-9439 regarding
+                the next steps.</p>
+            </div>
+        </div>
+        <div class="container">
+
+            {{#each getLevels}}
+                    <div class="videoGroup col-md-4">
+                        <h2>{{convertLevel this}}</h2>
+                        {{#if canViewLevel this}}
+
+                            {{#each getVideosAtLevel this}}
+
+                                    <a href="{{pathFor "video" _id=_id}}" class="clickableVideo">
+                                    <h3>{{name}}</h3>
+                                    <p>Status: {{#if completed _id}}<span class="complete">Completed</span> {{else}}<span class="incomplete">Incomplete</span>{{/if}}</p>
+                                    </a>
+                            {{/each}}
+
+                        {{else}}
+                            <h4>Quizzes unavailable until you finish the previous level or quizzes not available at your user level</h4>
+                        {{/if}}
+                    </div>
+            {{/each}}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,33 @@
+<template name="login">
+    <div class="login jumbotron">
+        <div class="container">
+            <div class="row ">
+                <h1>Welcome to Achieve Training</h1>
+            </div>
+
+            <div class="row login-and-info">
+                <div class="col-md-6">
+                    <p>Welcome to Achieve Weight Loss' Training Center. Here, you will learn how to teach others
+                    about Achieve Weight Loss and our program. To get started, log in with the information you were given
+                    by the administrator.</p>
+                </div>
+
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group {{#unless successfulLogin}}has-error{{/unless}}">
+                            <label class="control-label" for="username">Username
+                                <input id="username" class="form-control" type="text">
+                            </label>
+                        </div>
+                        <div class="form-group {{#unless successfulLogin}}has-error{{/unless}}">
+                            <label class="control-label" for="password">Password
+                                <input id="password" class="form-control" type="password">
+                            </label>
+                        </div>
+                        <button type="submit" class="login btn btn-primary">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

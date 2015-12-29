@@ -1,0 +1,36 @@
+<template name="appLayout">
+    <div class="appLayout">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    {{#if isAdmin}}
+                        <a id="adminLink" class="link" href="{{pathFor route='admin'}}">
+                            <div class="innerLink"><i class="fa fa-lock"></i>Admin</div>
+                        </a>
+                    {{/if}}
+                    <a id="videoLink" class="link" href="{{pathFor route='home'}}">
+                        <div class="innerLink"><i class="fa fa-video-camera"></i>Videos</div>
+                    </a>
+                    <div class="account-options">
+                    {{#if currentUser}}
+                        <a id="userButton" class="link" href="{{pathFor 'userpage' _id=currentUser._id}}">
+                            <div class="innerLink"><i class="fa fa-user"></i>User</div>
+                        </a>
+                        <a id="signOutButton" class="link">
+                            <div class="innerLink"><i class="fa fa-sign-out"></i>Sign Out</div>
+                        </a>
+                    {{/if}}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {{> yield}}
+
+        <div class="container footer">
+            <div class="bar"></div>
+            <a href="{{pathFor 'home'}}">Home</a>
+            <a href="www.myachieveweightloss.com">Our Website</a>
+        </div>
+    </div>
+</template>

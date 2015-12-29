@@ -1,0 +1,57 @@
+<template name="video">
+    <div class="video">
+        <div class="container">
+            <h1>{{getName}}</h1>
+
+            <div class="videoAndNotes">
+                <div class="videoFrame">
+                    <iframe src="{{getSrc}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <p>Breads and More from <a href="https://vimeo.com/user23907031">Jim Wright</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                </div>
+                <div class="notes">
+                    <h2>Notes</h2>
+                    <p>Right click and hit <em>Save Link As</em> to save the pdf.</p>
+                    <a href="/pdfs/{{getPdf}}">{{getPdf}}</a>
+                </div>
+            </div>
+
+            {{#unless getIsComplete}}
+            <div class="userQuiz">
+            <h2>Video Quiz</h2>
+                <form id="quizContent">
+                    {{#each getQuizQuestions}}
+                            <h3>{{question}}</h3>
+                            <i class="{{_id}} fa fa-check-circle correct"></i>
+                            <i class="{{_id}} fa fa-times-circle wrong"></i>
+                            {{#each getAnswers}}
+                                {{#if isCheckbox ../correct}}
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="{{@index}}" type="checkbox" name="{{../_id}}" value="{{this}}">{{this}}
+                                        </label>
+                                    </div>
+
+                                {{else}}
+                                    <div class="radio">
+                                        <label>
+                                            <input id="{{@index}}" type="radio" name="{{../_id}}" value="{{this}}">{{this}}
+                                        </label>
+                                    </div>
+                                {{/if}}
+                            {{/each}}
+                    {{/each}}
+
+                    <button type="submit" class="btn btn-primary">Submit Quiz</button>
+                </form>
+            </div>
+
+            {{else}}
+            <div class="complete">
+                <h1>Quiz complete! Congratulations!</h1>
+                <a id="home" href="{{pathFor 'home'}}">Return to main screen</a>
+            </div>
+
+            {{/unless}}
+        </div>
+    </div>
+</template>

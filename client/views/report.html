@@ -1,0 +1,23 @@
+<template name="report">
+    <div class="report container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Video</th>
+                    <th>Level</th>
+                    <th>Quiz Progress</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each userQuizzes}}
+                <tr class="{{#unless highlight}}warning{{/unless}}">
+                        <td>{{name}}</td>
+                        <td>{{convertLevel quizLevel}}</td>
+                        <td>{{complete}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

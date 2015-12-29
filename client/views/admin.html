@@ -1,0 +1,77 @@
+<template name="admin">
+    <div class="admin">
+
+        <div class="jumbotron row">
+            <div class="container">
+                <h1>Administrator's Page</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>Users</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Position</th>
+                        <th>View Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each allUsers}}
+                        <tr>
+                            <td>{{username}}</td>
+                            <td><select class="form-control user-level">
+                                <option selected="{{selected profile.level 0}}">Mentor</option>
+                                <option selected="{{selected profile.level 1}}">Facilitator</option>
+                                <option selected="{{selected profile.level 2}}">Coach</option>
+                                <option selected="{{selected profile.level 3}}">Admin</option>
+                            </select></td>
+                            <td><a href="{{pathFor route='report' _id=_id}}" class="btn btn-info">View Report</a></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <button class="btn btn-default" data-toggle="modal" data-target="#newUserModal">
+                Create New User
+            </button>
+
+            <h3>Videos</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Video Name</th>
+                        <th>Video Level</th>
+                        <th>View Quiz</th>
+                        <th>Remove Video</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {{#each allVideos}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td><select class="form-control video-level">
+                            <option selected = "{{selected level 0}}">Mentor</option>
+                            <option selected = "{{selected level 1}}">Facilitator</option>
+                            <option selected = "{{selected level 2}}">Coach</option>
+                        </select></td>
+                        {{#if quizExists _id}}<td><a href="{{pathFor 'quiz' _id=_id}}" class="btn btn-warning edit-quiz">Edit Quiz</a></td>
+                        {{else}}<td><a class="btn btn-primary create-quiz">Create Quiz</a></td>
+                        {{/if}}
+                        <td><button class="btn btn-danger remove-video">Remove Video</button></td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            <button class="btn btn-default" data-toggle="modal" data-target="#newVideoModal">
+                Upload New Video
+            </button>
+        </div>
+
+        {{> newUserModal}}
+        {{> newVideoModal}}
+    </div>
+
+
+</template>
