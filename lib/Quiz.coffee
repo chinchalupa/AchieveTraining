@@ -8,7 +8,12 @@
 )
 
 Meteor.methods(
-  'createQuiz': (quizId, level) ->
+  'createQuiz': (quizId, level, videoId) ->
+    Quiz.update(
+      {videoId: videoId},
+      {$set: {level: level}}
+    )
+
     set = {}
     set['profile.quizzes.' + quizId] = 0
 

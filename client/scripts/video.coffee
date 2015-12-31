@@ -29,14 +29,21 @@ Template.video.helpers(
     correctOptions.length > 1
 
   getSrc: ->
-    console.log @[0]
     if @[0]
-      console.log @[0]
       @[0].url
 
+  getChat: ->
+    if @[0]
+      @[0].chatUrl
 
   getIsComplete: ->
     return Template.instance().isComplete.get()
+
+  hasChat: ->
+    if @[0]
+      return @[0].chatUrl != "" && @[0].chatUrl != null && @[0].level is -1
+    else
+      false
 )
 
 Template.video.events(

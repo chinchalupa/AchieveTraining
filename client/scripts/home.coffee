@@ -1,6 +1,5 @@
 Template.home.helpers(
   getVideos: ->
-    userLevel = Meteor.user().profile.level
     Video.find()
 
   getVideosAtLevel: (videoLevel) ->
@@ -8,7 +7,7 @@ Template.home.helpers(
     Video.find( $and: [{level:  {$lte: userLevel}}, {level: { $in: [videoLevel]}}])
 
   getLevels: ->
-    return [0, 1, 2]
+    return [-1, 0, 1, 2]
 
   canViewLevel: (levelAbove) ->
     level = levelAbove - 1

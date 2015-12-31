@@ -7,31 +7,40 @@
                     <h4 class="modal-title" id="newUser">Create New Video</h4>
                 </div>
 
-                <form id="videoForm">
-                    <div class="modal-body">
-                        <label>URL
-                            <input type="text" class="form-control">
-                        </label>
-                        <label>Name
-                            <input type="text" class="form-control">
-                        </label>
-                        <label>Video Level
-                            <select class="form-control">
-                                <option>Mentor</option>
-                                <option>Facilitator</option>
-                                <option>Coach</option>
-                                <option>Admin</option>
-                            </select>
-                        </label>
-                        <label>PDF
-                            <input type="file" class="form-control">
-                        </label>
-                    </div>
+                {{#with editedForm}}
+                    <form id="videoForm">
+                        <div class="modal-body">
+                            <label>URL
+                                <input type="text" class="form-control" value="{{url}}">
+                            </label>
+                            <label>Name
+                                <input type="text" class="form-control" value="{{name}}">
+                            </label>
+                            <label>Video Level
+                                <select id="videoLevel" class="form-control">
+                                    <option selected="{{selected level 0}}">Mentor</option>
+                                    <option selected="{{selected level 1}}">Facilitator</option>
+                                    <option selected="{{selected level 2}}">Coach</option>
+                                    <option selected="{{selected level 3}}">Admin</option>
+                                    <option selected="{{selected level -1}}">Live Class</option>
+                                </select>
+                            </label>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Upload Video</button>
-                    </div>
-                </form>
+                            <label>PDF
+                                <input type="file" class="form-control">
+                            </label>
+                            {{#if hasChat}}
+                                <label>Chat URL
+                                    <input type="text" class="form-control" value="{{chatUrl}}">
+                                </label>
+                            {{/if}}
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">Upload Video</button>
+                        </div>
+                    </form>
+                {{/with}}
             </div>
         </div>
     </div>

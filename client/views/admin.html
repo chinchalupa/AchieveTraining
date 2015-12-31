@@ -43,7 +43,7 @@
                         <th>Video Name</th>
                         <th>Video Level</th>
                         <th>View Quiz</th>
-                        <th>Remove Video</th>
+                        <th>Advanced Settings</th>
                     </tr>
                 </thead>
 
@@ -51,20 +51,26 @@
                 {{#each allVideos}}
                     <tr>
                         <td>{{name}}</td>
-                        <td><select class="form-control video-level">
-                            <option selected = "{{selected level 0}}">Mentor</option>
-                            <option selected = "{{selected level 1}}">Facilitator</option>
-                            <option selected = "{{selected level 2}}">Coach</option>
-                        </select></td>
+                        <td>
+                            <select class="form-control video-level">
+                                <option selected = "{{selected level -1}}">Live Video</option>
+                                <option selected = "{{selected level 0}}">Mentor</option>
+                                <option selected = "{{selected level 1}}">Facilitator</option>
+                                <option selected = "{{selected level 2}}">Coach</option>
+                            </select>
+                        </td>
                         {{#if quizExists _id}}<td><a href="{{pathFor 'quiz' _id=_id}}" class="btn btn-warning edit-quiz">Edit Quiz</a></td>
                         {{else}}<td><a class="btn btn-primary create-quiz">Create Quiz</a></td>
                         {{/if}}
-                        <td><button class="btn btn-danger remove-video">Remove Video</button></td>
+                        <td>
+                            <button class="btn btn-warning edit-video" data-toggle="modal" data-target="#newVideoModal">Edit</button>
+                            <button class="btn btn-danger remove-video">Remove Video</button>
+                        </td>
                     </tr>
                 {{/each}}
                 </tbody>
             </table>
-            <button class="btn btn-default" data-toggle="modal" data-target="#newVideoModal">
+            <button id="uploadVideo" class="btn btn-default" data-toggle="modal" data-target="#newVideoModal">
                 Upload New Video
             </button>
         </div>

@@ -32,12 +32,22 @@ Router.route '/admin', {
     else
       Router.go('/')
   waitOn: ->
+    Session.set('edited-video', null)
     [Meteor.subscribe('allVideos'), Meteor.subscribe('allUsers'), Meteor.subscribe('allQuizzes')]
 }
 
 Router.route '/video/:_id', {
   name: 'video',
   template: 'video',
+  onBeforeAction: ->
+    video = Video.findOne(_id: @params._id)
+    if video.level < 0
+      this.next()
+    else
+      if Meteor.user()
+        this.next()
+      else
+        this.render 'login'
   data: () ->
     Video.find(_id: @params._id).fetch()
   waitOn: ->

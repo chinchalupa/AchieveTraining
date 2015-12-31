@@ -10,7 +10,6 @@ Template.admin.helpers(
 )
 
 Template.admin.events(
-
   'click .remove-video': (e, template) ->
     Video.remove(_id: @_id)
     quiz = Quiz.findOne(videoId: @_id)
@@ -18,20 +17,33 @@ Template.admin.events(
 
     Meteor.call('destroyQuiz', quiz._id)
 
+  'click .edit-video': (e, template) ->
+    Session.set('edited-video', @_id)
+
+  'click #uploadVideo': (e, template) ->
+
+    videoId = Video.insert({})
+
+    Quiz.insert(
+      videoId: videoId
+    )
+
+    Session.set('edited-video', videoId)
+
 
   'change .user-level': (e, template) ->
     position = e.target.value
     level = convertPosition(position)
 
     Meteor.users.update({_id: @_id}
-    $set: {'profile.level': level})
+      $set: {'profile.level': level})
 
   'change .video-level': (e, template) ->
     position = e.target.value
     level = convertPosition(position)
 
     Video.update({_id: @_id}
-    $set: {'level': level})
+      $set: {'level': level})
 
     video = Video.findOne(_id: @_id)
 

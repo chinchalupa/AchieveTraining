@@ -10,3 +10,5 @@ Handlebars.registerHelper 'convertLevel', (level) ->
     return "Coach"
   else if level is 3
     return "Admin"
+  else if level is -1
+    return "Live Class"
