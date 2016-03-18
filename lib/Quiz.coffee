@@ -9,9 +9,10 @@
 
 Meteor.methods(
   'createQuiz': (quizId, level, videoId) ->
+    console.log quizId + " " + level + " " + videoId
     Quiz.update(
-      {videoId: videoId},
-      {$set: {level: level}}
+      {"_id": quizId},
+      {$set: {"level": level}}
     )
 
     set = {}

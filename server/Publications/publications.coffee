@@ -23,9 +23,11 @@ Meteor.publish 'quiz', (quizId) ->
   Quiz.find(_id: quizId)
 
 Meteor.publish 'quizzesAtLevel', (userLevel) ->
+  console.log "user level " + userLevel
   Quiz.find(level: {$lte: userLevel})
 
-Meteor.publish 'findQuestionsFromVideo', (videoId) ->
-  quiz = Quiz.findOne(videoId: videoId)
-  quizId = quiz._id
-  Question.find(quizId: quizId)
+Meteor.publish 'findQuestionsFromVideo', (uniqueVideoId) ->
+  console.log "Video ID " + uniqueVideoId
+  quiz = Quiz.findOne("videoId": uniqueVideoId)
+  console.log quiz
+  Question.find("quizId": quiz._id)
