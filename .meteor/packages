@@ -28,3 +28,4 @@ reactive-var
 fortawesome:fontawesome
 mrt:vimeo
 chrismbeckett:toastr
+percolate:migrations
