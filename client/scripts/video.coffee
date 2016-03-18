@@ -99,6 +99,7 @@ Template.video.events(
 
 
     if parseFloat(totalCorrect / total) > 0.85
+      console.log("GOOD JOB")
       set = {}
       quiz = Quiz.findOne(videoId: @[0]._id)
       set['profile.quizzes.' + quiz._id] = 1

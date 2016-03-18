@@ -35,6 +35,7 @@ Template.home.helpers(
 
 
   completed: (id) ->
+    console.log "Found " + id
     quiz = Quiz.findOne(videoId: id)
     if quiz
       Meteor.user().profile.quizzes[quiz._id]
