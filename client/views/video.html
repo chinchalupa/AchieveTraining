@@ -5,9 +5,13 @@
 
             <div class="videoAndNotes">
                 <div class="videoFrame">
-                    <iframe src="{{getSrc}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{#if hasSrc}}
+                        <iframe src="{{getSrc}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{else}}
+                        <h3 id="noVideoSrcInfo">No video has been uploaded yet. Please come back later.</h3>
+                    {{/if}}
                     {{#if hasChat}}
-                    <iframe src="{{getChat}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <iframe src="{{getChat}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     {{/if}}
 
 

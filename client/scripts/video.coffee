@@ -28,6 +28,13 @@ Template.video.helpers(
   isCheckbox: (correctOptions) ->
     correctOptions.length > 1
 
+  hasSrc: ->
+
+    video = @[0]
+
+    if video
+      return video.url? && video.url != ""
+
   getSrc: ->
     if @[0]
       @[0].url

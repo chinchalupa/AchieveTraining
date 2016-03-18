@@ -18,7 +18,7 @@
                                 <input id="{{@index}}" class="form-control answer" type="text" placeholder="Answer..." value="{{this}}">
                             </label>
                             <button type="button" id="{{@index}}" class="setCorrect btn {{#if isCorrect @index}}btn-success{{else}}btn-default{{/if}}"><i class="fa fa-check"></i></button>
-
+                            <button type="button" id="{{@index}}" class="removeAnswer btn btn-danger"><i class="fa fa-times"></i> </button>
                         {{/each}}
 
                         <button type="button" id="addAnswer" class="btn btn-default">
