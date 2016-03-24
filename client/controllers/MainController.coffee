@@ -68,6 +68,7 @@ Router.route 'report/:_id', {
   template: 'report',
   data: () ->
     Meteor.users.find(_id: @params._id).fetch()
+
   waitOn: () ->
     Meteor.subscribe('userReport', @params_id)
 }
