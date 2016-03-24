@@ -5,9 +5,15 @@
 
             <div class="videoAndNotes">
                 <div class="videoFrame">
-                    <iframe src="{{getSrc}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{#if hasSrc}}
+                        <iframe src="{{getSrc}}" width="100%" height="450" frameborder="0" webkitallowfullscreen
+                                mozallowfullscreen allowfullscreen></iframe>
+                    {{else}}
+                        <h3 id="noVideoSrcInfo">No video has been uploaded yet. Please come back later.</h3>
+                    {{/if}}
                     {{#if hasChat}}
-                    <iframe src="{{getChat}}" width="100%" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <iframe src="{{getChat}}" width="100%" height="450" frameborder="0" webkitallowfullscreen
+                                mozallowfullscreen allowfullscreen></iframe>
                     {{/if}}
 
 
@@ -21,43 +27,45 @@
 
             {{#unless getIsComplete}}
                 {{#unless hasChat}}
-            <div class="userQuiz">
-            <h2>Video Quiz</h2>
-                <form id="quizContent">
-                    {{#each getQuizQuestions}}
-                            <h3>{{question}}</h3>
-                            <i class="{{_id}} fa fa-check-circle correct"></i>
-                            <i class="{{_id}} fa fa-times-circle wrong"></i>
-                            {{#each getAnswers}}
-                                {{#if isCheckbox ../correct}}
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="{{@index}}" type="checkbox" name="{{../_id}}" value="{{this}}">{{this}}
-                                        </label>
-                                    </div>
+                    <div class="userQuiz">
+                        <h2>Video Quiz</h2>
+                        <form id="quizContent">
+                            {{#each getQuizQuestions}}
+                                <h3>{{question}}</h3>
+                                <i class="{{_id}} fa fa-check-circle correct"></i>
+                                <i class="{{_id}} fa fa-times-circle wrong"></i>
+                                {{#each getAnswers}}
+                                    {{#if isCheckbox ../correct}}
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="{{@index}}" type="checkbox" name="{{../_id}}"
+                                                       value="{{this}}">{{this}}
+                                            </label>
+                                        </div>
 
-                                {{else}}
-                                    <div class="radio">
-                                        <label>
-                                            <input id="{{@index}}" type="radio" name="{{../_id}}" value="{{this}}">{{this}}
-                                        </label>
-                                    </div>
-                                {{/if}}
-                            {{/each}}
-                    {{/each}}
+                                    {{else}}
+                                        <div class="radio">
+                                            <label>
+                                                <input id="{{@index}}" type="radio" name="{{../_id}}"
+                                                       value="{{this}}">{{this}}
+                                            </label>
+                                        </div>
+                                    {{/if}}
+                                {{/each}}
+                            {{/each}}L
 
-                    <button type="submit" class="btn btn-primary">Submit Quiz</button>
-                </form>
-            </div>
+                            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+                        </form>
+                    </div>
+
+
+                {{/unless}}
 
             {{else}}
-                {{#unless hasChat}}
-                    <div class="complete">
-                        <h1>Quiz complete! Congratulations!</h1>
-                        <a id="home" href="{{pathFor 'home'}}">Return to main screen</a>
-                    </div>
-                {{/unless}}
-            {{/unless}}
+                <div class="complete">
+                    <h1>Quiz complete! Congratulations!</h1>
+                    <a id="home" href="{{pathFor 'home'}}">Return to main screen</a>
+                </div>
             {{/unless}}
         </div>
     </div>
