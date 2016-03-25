@@ -16,16 +16,8 @@ Accounts.onCreateUser (options, user) ->
   return user
 
 Meteor.methods(
-  updateQuizLevel: (quizId, level) ->
-    set = {}
-    set['profile.quizzes.' + quizId] = ""
-    Meteor.users.update({'profile.level': {$lt: level}}
-      {$unset: {set: ""}}
-      {$multi: true})
+  
 
-    Meteor.users.update({'profile.level': {$gte: level}}
-      {$set: {set: 0}}
-      {$multi: true})
 #
   updateUserLevel: (userId, level) ->
     user = Meteor.users.findOne(_id: userId)

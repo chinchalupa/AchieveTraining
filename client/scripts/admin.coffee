@@ -42,14 +42,10 @@ Template.admin.events(
     position = e.target.value
     level = convertPosition(position)
 
-    Video.update({_id: @_id}
-      $set: {'level': level})
+    console.log("Calling update", @_id)
 
-    video = Video.findOne(_id: @_id)
-
-    quiz = Quiz.findOne(videoId: video._id)
-
-    Meteor.call('updateQuizLevel', quiz, level)
+    unless (_.isNull(@))
+      Meteor.call('updateVideoAndQuizLevelFromVideo', @_id, level)
 )
 
 convertPosition = (position) ->
